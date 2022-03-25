@@ -3,16 +3,16 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>AR project template</title>
-    <!-- Добавляем необходимые библиотеки -->
+    <!-- Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»ГҐ ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ -->
     <script src="js/three.js"></script>
     <script src="js/tween.umd.js"></script>
     <script src='loaders/GLTFLoader.js'></script>
     <script src='loaders/MTLLoader.js'></script>
     <script src='loaders/OBJLoader.js'></script>
-    <!-- Добавляем jsartookit -->
+    <!-- Г„Г®ГЎГ ГўГ«ГїГҐГ¬ jsartookit -->
     <script src="jsartoolkit5/artoolkit.min.js"></script>
     <script src="jsartoolkit5/artoolkit.api.js"></script>
-    <!-- Добавляем threex.artoolkit -->
+    <!-- Г„Г®ГЎГ ГўГ«ГїГҐГ¬ threex.artoolkit -->
     <script src="threex/threex-artoolkitsource.js"></script>
     <script src="threex/threex-artoolkitcontext.js"></script>
     <script src="threex/threex-arbasecontrols.js"></script>
@@ -26,7 +26,7 @@
                 text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight: 400; line-height: 1.5em; font-size: large; white-space: nowrap;
                 user-select: none; pointer-events: none;
             ">
-            Press here
+            РќР°С‚РёСЃРЅС–С‚СЊ РЅР° РµРєСЂР°РЅ РґР»СЏ РѕС‚СЂРёРјР°РЅРЅСЏ РґРѕСЃС‚СѓРїСѓ РґРѕ WebAR-Р±СѓРєР»РµС‚Сѓ В«РђР±Р°РєВ»
             <br>
             to enter the experience
         </div>
@@ -47,19 +47,19 @@
         const loader = document.getElementById('loader');
 
         function initiateExperience() {
-            // Объявляем глобальные переменные
+            // ГЋГЎГєГїГўГ«ГїГҐГ¬ ГЈГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ
             var scene, camera, renderer, clock, deltaTime, totalTime;
 
             var patternIdOffset = 10000000000
 
-            // Переменные необходимые для работы AR окружения
+            // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»ГҐ Г¤Г«Гї Г°Г ГЎГ®ГІГ» AR Г®ГЄГ°ГіГ¦ГҐГ­ГЁГї
             var arToolkitSource, arToolkitContext;
 
-            // Главный контейнер, в который войдут все 3D объекты для приложения 
+            // ГѓГ«Г ГўГ­Г»Г© ГЄГ®Г­ГІГҐГ©Г­ГҐГ°, Гў ГЄГ®ГІГ®Г°Г»Г© ГўГ®Г©Г¤ГіГІ ГўГ±ГҐ 3D Г®ГЎГєГҐГЄГІГ» Г¤Г«Гї ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї 
             var markerRoot, mainContainer;
 
-            // Отдельный массив для хранение всего аудио и видео контента, который будет 
-            // запущен по нажатию на экран смартфона
+            // ГЋГІГ¤ГҐГ«ГјГ­Г»Г© Г¬Г Г±Г±ГЁГў Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГҐ ГўГ±ГҐГЈГ® Г ГіГ¤ГЁГ® ГЁ ГўГЁГ¤ГҐГ® ГЄГ®Г­ГІГҐГ­ГІГ , ГЄГ®ГІГ®Г°Г»Г© ГЎГіГ¤ГҐГІ 
+            // Г§Г ГЇГіГ№ГҐГ­ ГЇГ® Г­Г Г¦Г ГІГЁГѕ Г­Г  ГЅГЄГ°Г Г­ Г±Г¬Г Г°ГІГґГ®Г­Г 
             var audioContent = [];
 
             var contentPromises = [];
@@ -72,28 +72,28 @@
 
             let controller;
 
-            // Инициализируем сцену и запускаем цикл анимации
+            // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ Г±Г¶ГҐГ­Гі ГЁ Г§Г ГЇГіГ±ГЄГ ГҐГ¬ Г¶ГЁГЄГ« Г Г­ГЁГ¬Г Г¶ГЁГЁ
             initialize();
             animate();
 
             function initialize() {
-                // Объявляем сцену в которую добавим главный контейнер со всеми 3D объектами
+                // ГЋГЎГєГїГўГ«ГїГҐГ¬ Г±Г¶ГҐГ­Гі Гў ГЄГ®ГІГ®Г°ГіГѕ Г¤Г®ГЎГ ГўГЁГ¬ ГЈГ«Г ГўГ­Г»Г© ГЄГ®Г­ГІГҐГ©Г­ГҐГ° Г±Г® ГўГ±ГҐГ¬ГЁ 3D Г®ГЎГєГҐГЄГІГ Г¬ГЁ
                 scene = new THREE.Scene();
 
-                // Добавляем свет на сцену, иначе базовые материалы будут просто чёрными
-                // т.к. им будет нечего отражать, обратитесь к документации библиотеки three.js, чтобы
-                // прочитать о подробной работе класса Material
+                // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г±ГўГҐГІ Г­Г  Г±Г¶ГҐГ­Гі, ГЁГ­Г Г·ГҐ ГЎГ Г§Г®ГўГ»ГҐ Г¬Г ГІГҐГ°ГЁГ Г«Г» ГЎГіГ¤ГіГІ ГЇГ°Г®Г±ГІГ® Г·ВёГ°Г­Г»Г¬ГЁ
+                // ГІ.ГЄ. ГЁГ¬ ГЎГіГ¤ГҐГІ Г­ГҐГ·ГҐГЈГ® Г®ГІГ°Г Г¦Г ГІГј, Г®ГЎГ°Г ГІГЁГІГҐГ±Гј ГЄ Г¤Г®ГЄГіГ¬ГҐГ­ГІГ Г¶ГЁГЁ ГЎГЁГЎГ«ГЁГ®ГІГҐГЄГЁ three.js, Г·ГІГ®ГЎГ»
+                // ГЇГ°Г®Г·ГЁГІГ ГІГј Г® ГЇГ®Г¤Г°Г®ГЎГ­Г®Г© Г°Г ГЎГ®ГІГҐ ГЄГ«Г Г±Г±Г  Material
                 let ambientLight = new THREE.AmbientLight(0xcccccc, 0.5);
                 scene.add(ambientLight);
 
-                // Добавляем камеру, которая будет позже переназначена на камеру смартфона
+                // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГЄГ Г¬ГҐГ°Гі, ГЄГ®ГІГ®Г°Г Гї ГЎГіГ¤ГҐГІ ГЇГ®Г§Г¦ГҐ ГЇГҐГ°ГҐГ­Г Г§Г­Г Г·ГҐГ­Г  Г­Г  ГЄГ Г¬ГҐГ°Гі Г±Г¬Г Г°ГІГґГ®Г­Г 
                 camera = new THREE.Camera();
                 scene.add(camera);
                 const listener = new THREE.AudioListener();
                 camera.add(listener);
                 const audioLoader = new THREE.AudioLoader();
 
-                // Объявляем стандартный рендерер и добавляем его в тег body html документа
+                // ГЋГЎГєГїГўГ«ГїГҐГ¬ Г±ГІГ Г­Г¤Г Г°ГІГ­Г»Г© Г°ГҐГ­Г¤ГҐГ°ГҐГ° ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГҐГЈГ® Гў ГІГҐГЈ body html Г¤Г®ГЄГіГ¬ГҐГ­ГІГ 
                 renderer = new THREE.WebGLRenderer({
                     antialias: true,
                     alpha: true
@@ -113,7 +113,7 @@
                     sourceType: 'webcam',
                 });
 
-                // Функция перерендерит AR сцену под текущий размер canvas
+                // Г”ГіГ­ГЄГ¶ГЁГї ГЇГҐГ°ГҐГ°ГҐГ­Г¤ГҐГ°ГЁГІ AR Г±Г¶ГҐГ­Гі ГЇГ®Г¤ ГІГҐГЄГіГ№ГЁГ© Г°Г Г§Г¬ГҐГ° canvas
                 function onResize() {
                     arToolkitSource.onResize()
                     arToolkitSource.copySizeTo(renderer.domElement)
@@ -122,17 +122,17 @@
                     }
                 }
 
-                // Вызываем функцию при инициализации AR
+                // Г‚Г»Г§Г»ГўГ ГҐГ¬ ГґГіГ­ГЄГ¶ГЁГѕ ГЇГ°ГЁ ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ AR
                 arToolkitSource.init(function onReady() {
                     onResize()
                 });
 
-                // Вызываем функцию на resize ивент веб-страницы
+                // Г‚Г»Г§Г»ГўГ ГҐГ¬ ГґГіГ­ГЄГ¶ГЁГѕ Г­Г  resize ГЁГўГҐГ­ГІ ГўГҐГЎ-Г±ГІГ°Г Г­ГЁГ¶Г»
                 window.addEventListener('resize', function () {
                     onResize()
                 });
 
-                // Инициализируем AR контекст под камеру, паттерны, баркод 3х3
+                // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§ГЁГ°ГіГҐГ¬ AR ГЄГ®Г­ГІГҐГЄГ±ГІ ГЇГ®Г¤ ГЄГ Г¬ГҐГ°Гі, ГЇГ ГІГІГҐГ°Г­Г», ГЎГ Г°ГЄГ®Г¤ 3Гµ3
                 arToolkitContext = new THREEx.ArToolkitContext({
                     cameraParametersUrl: 'data/camera_para.dat',
                     detectionMode: 'mono_and_matrix',
@@ -142,45 +142,45 @@
                     canvasHeight: 480
                 });
 
-                // Обновляем матрицу проекции камеры после окончания инициализации
+                // ГЋГЎГ­Г®ГўГ«ГїГҐГ¬ Г¬Г ГІГ°ГЁГ¶Гі ГЇГ°Г®ГҐГЄГ¶ГЁГЁ ГЄГ Г¬ГҐГ°Г» ГЇГ®Г±Г«ГҐ Г®ГЄГ®Г­Г·Г Г­ГЁГї ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГЁ
                 arToolkitContext.init(function onCompleted() {
                     camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
                 });
 
-                // Создаём главную группу для всех 3D объектов
+                // Г‘Г®Г§Г¤Г ВёГ¬ ГЈГ«Г ГўГ­ГіГѕ ГЈГ°ГіГЇГЇГі Г¤Г«Гї ГўГ±ГҐГµ 3D Г®ГЎГєГҐГЄГІГ®Гў
                 mainContainer = new THREE.Group();
 
-                // Массив имён файлов .patt. Массив заполняется в порядке добавления маркеров
-                // если вместо .patt был добавлен баркод, на его место в массив добавляется пустая строка
+                // ГЊГ Г±Г±ГЁГў ГЁГ¬ВёГ­ ГґГ Г©Г«Г®Гў .patt. ГЊГ Г±Г±ГЁГў Г§Г ГЇГ®Г«Г­ГїГҐГІГ±Гї Гў ГЇГ®Г°ГїГ¤ГЄГҐ Г¤Г®ГЎГ ГўГ«ГҐГ­ГЁГї Г¬Г Г°ГЄГҐГ°Г®Гў
+                // ГҐГ±Г«ГЁ ГўГ¬ГҐГ±ГІГ® .patt ГЎГ»Г« Г¤Г®ГЎГ ГўГ«ГҐГ­ ГЎГ Г°ГЄГ®Г¤, Г­Г  ГҐГЈГ® Г¬ГҐГ±ГІГ® Гў Г¬Г Г±Г±ГЁГў Г¤Г®ГЎГ ГўГ«ГїГҐГІГ±Гї ГЇГіГ±ГІГ Гї Г±ГІГ°Г®ГЄГ 
                 const patternNames = ["" ,"" ,""];
-                // Maссив баркодов, заполняется одновременно с массивом паттернов
-                // если вместо баркода был добавлен .patt, на его место в массив добавляется -1
+                // MaГ±Г±ГЁГў ГЎГ Г°ГЄГ®Г¤Г®Гў, Г§Г ГЇГ®Г«Г­ГїГҐГІГ±Гї Г®Г¤Г­Г®ГўГ°ГҐГ¬ГҐГ­Г­Г® Г± Г¬Г Г±Г±ГЁГўГ®Г¬ ГЇГ ГІГІГҐГ°Г­Г®Гў
+                // ГҐГ±Г«ГЁ ГўГ¬ГҐГ±ГІГ® ГЎГ Г°ГЄГ®Г¤Г  ГЎГ»Г« Г¤Г®ГЎГ ГўГ«ГҐГ­ .patt, Г­Г  ГҐГЈГ® Г¬ГҐГ±ГІГ® Гў Г¬Г Г±Г±ГЁГў Г¤Г®ГЎГ ГўГ«ГїГҐГІГ±Гї -1
                 const patternBarcode = [1 ,2 ,3];
-                // Массив типов контента для каждого маркера, заполняется значиями: изображение, модель, видео
+                // ГЊГ Г±Г±ГЁГў ГІГЁГЇГ®Гў ГЄГ®Г­ГІГҐГ­ГІГ  Г¤Г«Гї ГЄГ Г¦Г¤Г®ГЈГ® Г¬Г Г°ГЄГҐГ°Г , Г§Г ГЇГ®Г«Г­ГїГҐГІГ±Гї Г§Г­Г Г·ГЁГїГ¬ГЁ: ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГҐ, Г¬Г®Г¤ГҐГ«Гј, ГўГЁГ¤ГҐГ®
                 const modes = ["image" ,"image" ,"image"];
-                // Массив файлов моделей, если нет модели будет добавлена пустая строка
+                // ГЊГ Г±Г±ГЁГў ГґГ Г©Г«Г®Гў Г¬Г®Г¤ГҐГ«ГҐГ©, ГҐГ±Г«ГЁ Г­ГҐГІ Г¬Г®Г¤ГҐГ«ГЁ ГЎГіГ¤ГҐГІ Г¤Г®ГЎГ ГўГ«ГҐГ­Г  ГЇГіГ±ГІГ Гї Г±ГІГ°Г®ГЄГ 
                 const modelFiles = ["" ,"" ,""];
-                // Массив файлов изображений, если нет изображения будет добавлена пустая строка
+                // ГЊГ Г±Г±ГЁГў ГґГ Г©Г«Г®Гў ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГ©, ГҐГ±Г«ГЁ Г­ГҐГІ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЎГіГ¤ГҐГІ Г¤Г®ГЎГ ГўГ«ГҐГ­Г  ГЇГіГ±ГІГ Гї Г±ГІГ°Г®ГЄГ 
                 const imageFiles = ["barcode_1.png" ,"barcode_2.png" ,"abak(rome,japanese).png"];
-                // Массив файлов видео, если нет видео будет добавлена пустая строка
+                // ГЊГ Г±Г±ГЁГў ГґГ Г©Г«Г®Гў ГўГЁГ¤ГҐГ®, ГҐГ±Г«ГЁ Г­ГҐГІ ГўГЁГ¤ГҐГ® ГЎГіГ¤ГҐГІ Г¤Г®ГЎГ ГўГ«ГҐГ­Г  ГЇГіГ±ГІГ Гї Г±ГІГ°Г®ГЄГ 
                 const videoFiles = ["" ,"" ,""];
-                // Массив файлов аудио, если нет аудио будет добавлена пустая строка
+                // ГЊГ Г±Г±ГЁГў ГґГ Г©Г«Г®Гў Г ГіГ¤ГЁГ®, ГҐГ±Г«ГЁ Г­ГҐГІ Г ГіГ¤ГЁГ® ГЎГіГ¤ГҐГІ Г¤Г®ГЎГ ГўГ«ГҐГ­Г  ГЇГіГ±ГІГ Гї Г±ГІГ°Г®ГЄГ 
                 const audioFiles = ["1.mp3" ,"2.mp3" ,"3.mp3"];
-                // Массив опций повтора аудио и видео контента, по дефолту для всех будет false
+                // ГЊГ Г±Г±ГЁГў Г®ГЇГ¶ГЁГ© ГЇГ®ГўГІГ®Г°Г  Г ГіГ¤ГЁГ® ГЁ ГўГЁГ¤ГҐГ® ГЄГ®Г­ГІГҐГ­ГІГ , ГЇГ® Г¤ГҐГґГ®Г«ГІГі Г¤Г«Гї ГўГ±ГҐГµ ГЎГіГ¤ГҐГІ false
                 const repeatOptions = ["false" ,"false" ,"false"];
   
-                // Создаём массив для всех маркеров
+                // Г‘Г®Г§Г¤Г ВёГ¬ Г¬Г Г±Г±ГЁГў Г¤Г«Гї ГўГ±ГҐГµ Г¬Г Г°ГЄГҐГ°Г®Гў
                 const markerRoots = [];
                 for (let i = 0; i < 3; i++) {
                     markerRoots[i] = new THREE.Group();
                 }
   
-                // Проходимся по каждому маркеру из массива и добавляем его в главный контейнер 
+                // ГЏГ°Г®ГµГ®Г¤ГЁГ¬Г±Гї ГЇГ® ГЄГ Г¦Г¤Г®Г¬Гі Г¬Г Г°ГЄГҐГ°Гі ГЁГ§ Г¬Г Г±Г±ГЁГўГ  ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГҐГЈГ® Гў ГЈГ«Г ГўГ­Г»Г© ГЄГ®Г­ГІГҐГ©Г­ГҐГ° 
                 for (let i = 0; i < 3; i++) {
                     mainContainer.add(markerRoots[i]);
 
-                    // Если текущий маркер это баркод, создаём AR контроллер под баркод
-                    // если текущий маркер это паттерн, аналогично создаём AR контроллер под паттерн
+                    // Г…Г±Г«ГЁ ГІГҐГЄГіГ№ГЁГ© Г¬Г Г°ГЄГҐГ° ГЅГІГ® ГЎГ Г°ГЄГ®Г¤, Г±Г®Г§Г¤Г ВёГ¬ AR ГЄГ®Г­ГІГ°Г®Г«Г«ГҐГ° ГЇГ®Г¤ ГЎГ Г°ГЄГ®Г¤
+                    // ГҐГ±Г«ГЁ ГІГҐГЄГіГ№ГЁГ© Г¬Г Г°ГЄГҐГ° ГЅГІГ® ГЇГ ГІГІГҐГ°Г­, Г Г­Г Г«Г®ГЈГЁГ·Г­Г® Г±Г®Г§Г¤Г ВёГ¬ AR ГЄГ®Г­ГІГ°Г®Г«Г«ГҐГ° ГЇГ®Г¤ ГЇГ ГІГІГҐГ°Г­
                     if (patternBarcode[i] === -1) {
                         let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoots[i], {
                             type: 'pattern', patternUrl: patternNames[i], size: 1 + (i + 1) / patternIdOffset
@@ -193,29 +193,29 @@
                         barcodesID.push(patternBarcode[i]);
                     }
 
-                    // Используем switch для работы с каждым отдельным случаем контента
+                    // Г€Г±ГЇГ®Г«ГјГ§ГіГҐГ¬ switch Г¤Г«Гї Г°Г ГЎГ®ГІГ» Г± ГЄГ Г¦Г¤Г»Г¬ Г®ГІГ¤ГҐГ«ГјГ­Г»Г¬ Г±Г«ГіГ·Г ГҐГ¬ ГЄГ®Г­ГІГҐГ­ГІГ 
                     switch (modes[i]) {
-                        // Если контент под маркер это модель
+                        // Г…Г±Г«ГЁ ГЄГ®Г­ГІГҐГ­ГІ ГЇГ®Г¤ Г¬Г Г°ГЄГҐГ° ГЅГІГ® Г¬Г®Г¤ГҐГ«Гј
                         case 'model':
                             function onProgress(xhr) { console.log((xhr.loaded / xhr.total * 100) + '% loaded'); }
                             function onError(xhr) { console.log('An error happened'); }
 
-                            // Загружаем MTL модель
+                            // Г‡Г ГЈГ°ГіГ¦Г ГҐГ¬ MTL Г¬Г®Г¤ГҐГ«Гј
                             contentPromises.push(new Promise((resolve) => {
                                 new THREE.MTLLoader()
                                     .load(`${modelFiles[i]}.mtl`, function (materials) {
                                         materials.preload();
-                                        // Загружаем OBJ модель
+                                        // Г‡Г ГЈГ°ГіГ¦Г ГҐГ¬ OBJ Г¬Г®Г¤ГҐГ«Гј
                                         new THREE.OBJLoader()
                                             .setMaterials(materials)
                                             .load(`${modelFiles[i]}.obj`, function (group) {
                                                 let mesh0 = group.children[0];
                                                 mesh0.material.side = THREE.DoubleSide;
-                                                // Уменьшаем модель в 20 раз
+                                                // Г“Г¬ГҐГ­ГјГёГ ГҐГ¬ Г¬Г®Г¤ГҐГ«Гј Гў 20 Г°Г Г§
                                                 mesh0.scale.set(0.05, 0.05, 0.05);
-                                                // Поворачивает модель на -90 градусов по оси OX
+                                                // ГЏГ®ГўГ®Г°Г Г·ГЁГўГ ГҐГІ Г¬Г®Г¤ГҐГ«Гј Г­Г  -90 ГЈГ°Г Г¤ГіГ±Г®Гў ГЇГ® Г®Г±ГЁ OX
                                                 mesh0.rotation.set(Math.PI / -2, 0, 0);
-                                                // Добавляем модель в контейнер
+                                                // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ Г¬Г®Г¤ГҐГ«Гј Гў ГЄГ®Г­ГІГҐГ©Г­ГҐГ°
                                                 markerRoots[i].add(mesh0);
                                                 resolve(modelFiles[i])
                                             }, onProgress, onError);
@@ -224,11 +224,11 @@
                                 console.log(`${file} loaded`)
                             }))
                             break;
-                        // Если контент под маркер это изображение
+                        // Г…Г±Г«ГЁ ГЄГ®Г­ГІГҐГ­ГІ ГЇГ®Г¤ Г¬Г Г°ГЄГҐГ° ГЅГІГ® ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГҐ
                         case 'image':
                             if (imageFiles[i]) {
                                 contentPromises.push(new Promise((resolve) => {
-                                    // Загружаем изображение
+                                    // Г‡Г ГЈГ°ГіГ¦Г ГҐГ¬ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГҐ
                                     let loader = new THREE.TextureLoader();
                                     loader.load(`${imageFiles[i]}`, (texture) => {
                                         let geometry1;
@@ -239,9 +239,9 @@
                                         }
                                         let material1 = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
                                         mesh1 = new THREE.Mesh(geometry1, material1);
-                                        // Поворачиваем плоскость
+                                        // ГЏГ®ГўГ®Г°Г Г·ГЁГўГ ГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј
                                         mesh1.rotation.x = -Math.PI / 2;
-                                        // Добавляем плоскость в контейнер
+                                        // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј Гў ГЄГ®Г­ГІГҐГ©Г­ГҐГ°
                                         markerRoots[i].add(mesh1);
                                         resolve(imageFiles[i])
                                     });
@@ -250,36 +250,36 @@
                                 }))
                             }
                             break;
-                        // Если контент под маркер это видео
+                        // Г…Г±Г«ГЁ ГЄГ®Г­ГІГҐГ­ГІ ГЇГ®Г¤ Г¬Г Г°ГЄГҐГ° ГЅГІГ® ГўГЁГ¤ГҐГ®
                         case 'video':
-                            // Объявляем плоскость под видео
+                            // ГЋГЎГєГїГўГ«ГїГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј ГЇГ®Г¤ ГўГЁГ¤ГҐГ®
                             let geometry2 = new THREE.PlaneBufferGeometry(2, 2, 4, 4);
-                            // Объявляем и загружаем видео
+                            // ГЋГЎГєГїГўГ«ГїГҐГ¬ ГЁ Г§Г ГЈГ°ГіГ¦Г ГҐГ¬ ГўГЁГ¤ГҐГ®
                             let video = document.createElement('video');
                             video.src = `${videoFiles[i]}`;
                             video.playsInline = true;
-                            // Устанавлием видео на автоповтор в зависимости от значения в массиве
+                            // Г“Г±ГІГ Г­Г ГўГ«ГЁГҐГ¬ ГўГЁГ¤ГҐГ® Г­Г  Г ГўГІГ®ГЇГ®ГўГІГ®Г° Гў Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГЁ Г®ГІ Г§Г­Г Г·ГҐГ­ГЁГї Гў Г¬Г Г±Г±ГЁГўГҐ
                             if (repeatOptions[i]) {
                                 video.addEventListener('ended', () => {
                                     video.play();
                                 })
                             }
-                            // Добавляем видео в массив аудио контента
+                            // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГўГЁГ¤ГҐГ® Гў Г¬Г Г±Г±ГЁГў Г ГіГ¤ГЁГ® ГЄГ®Г­ГІГҐГ­ГІГ 
                             if (patternBarcode[i] === -1) {
                                 patternsSound.set(i, video);
                             } else {
                                 barcodesSound.set(patternBarcode[i], video);
                             }
-                            // Перенаправляем текстуру из видео в материал для плоскости
+                            // ГЏГҐГ°ГҐГ­Г ГЇГ°Г ГўГ«ГїГҐГ¬ ГІГҐГЄГ±ГІГіГ°Гі ГЁГ§ ГўГЁГ¤ГҐГ® Гў Г¬Г ГІГҐГ°ГЁГ Г« Г¤Г«Гї ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
                             let texture2 = new THREE.VideoTexture(video);
                             texture2.minFilter = THREE.LinearFilter;
                             texture2.magFilter = THREE.LinearFilter;
                             texture2.format = THREE.RGBFormat;
                             let material2 = new THREE.MeshBasicMaterial({ map: texture2 });
                             mesh2 = new THREE.Mesh(geometry2, material2);
-                            // Поворачиваем плоскость
+                            // ГЏГ®ГўГ®Г°Г Г·ГЁГўГ ГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј
                             mesh2.rotation.x = -Math.PI / 2;
-                            // Добавляем плоскость в контейнер
+                            // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј Гў ГЄГ®Г­ГІГҐГ©Г­ГҐГ°
                             markerRoots[i].add(mesh2);
                             break;
                         case 'controller':
@@ -293,25 +293,25 @@
                             markerRoots[i].add(controller);
                             break;
                         default:
-                            // Если никакого контента добавленно не было, добавляем белую плоскость
+                            // Г…Г±Г«ГЁ Г­ГЁГЄГ ГЄГ®ГЈГ® ГЄГ®Г­ГІГҐГ­ГІГ  Г¤Г®ГЎГ ГўГ«ГҐГ­Г­Г® Г­ГҐ ГЎГ»Г«Г®, Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ ГЎГҐГ«ГіГѕ ГЇГ«Г®Г±ГЄГ®Г±ГІГј
                             mesh11 = new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 1),
                                 new THREE.MeshBasicMaterial({ color: '#fff' }));
-                            // Поворачиваем плоскость
+                            // ГЏГ®ГўГ®Г°Г Г·ГЁГўГ ГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј
                             mesh11.rotation.x = -Math.PI / 2;
-                            // Добавляем плоскость в контейнер
+                            // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГЇГ«Г®Г±ГЄГ®Г±ГІГј Гў ГЄГ®Г­ГІГҐГ©Г­ГҐГ°
                             markerRoots[i].add(mesh11);
                             break;
                     }
 
-                    // Если имеются аудио файлы настраиваем их и добавляем в массив аудио контента
+                    // Г…Г±Г«ГЁ ГЁГ¬ГҐГѕГІГ±Гї Г ГіГ¤ГЁГ® ГґГ Г©Г«Г» Г­Г Г±ГІГ°Г ГЁГўГ ГҐГ¬ ГЁГµ ГЁ Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Гў Г¬Г Г±Г±ГЁГў Г ГіГ¤ГЁГ® ГЄГ®Г­ГІГҐГ­ГІГ 
                     if (audioFiles[i]) {
                         contentPromises.push(new Promise((resolve, reject) => {
                             audioLoader.load(`${audioFiles[i]}`, function (buffer) {
-                                // Создаём аудио источник
+                                // Г‘Г®Г§Г¤Г ВёГ¬ Г ГіГ¤ГЁГ® ГЁГ±ГІГ®Г·Г­ГЁГЄ
                                 let sound = new THREE.Audio(listener);
                                 sound.name = `${audioFiles[i]}`;
                                 sound.setBuffer(buffer);
-                                // Устанавлием аудио на автоповтор в зависимости от значения в массиве
+                                // Г“Г±ГІГ Г­Г ГўГ«ГЁГҐГ¬ Г ГіГ¤ГЁГ® Г­Г  Г ГўГІГ®ГЇГ®ГўГІГ®Г° Гў Г§Г ГўГЁГ±ГЁГ¬Г®Г±ГІГЁ Г®ГІ Г§Г­Г Г·ГҐГ­ГЁГї Гў Г¬Г Г±Г±ГЁГўГҐ
                                 if (repeatOptions[i]) {
                                     sound.setLoop(true);
                                 }
@@ -337,7 +337,7 @@
                         loader.style.opacity = '0';
                     });
 
-                // Добавляем главный контейнер на сцену
+                // Г„Г®ГЎГ ГўГ«ГїГҐГ¬ ГЈГ«Г ГўГ­Г»Г© ГЄГ®Г­ГІГҐГ©Г­ГҐГ° Г­Г  Г±Г¶ГҐГ­Гі
                 scene.add(mainContainer);
             }
 
@@ -370,7 +370,7 @@
                 return box1.intersectsBox(box2);
             };
 
-            // Обновляем AR контент на каждый кадр
+            // ГЋГЎГ­Г®ГўГ«ГїГҐГ¬ AR ГЄГ®Г­ГІГҐГ­ГІ Г­Г  ГЄГ Г¦Г¤Г»Г© ГЄГ Г¤Г°
             function update() {
                 if (arToolkitSource.ready !== false) {
                     arToolkitContext.update(arToolkitSource.domElement);
@@ -411,14 +411,14 @@
                 }
             }
 
-            // Рендерим сцену на каждый кадр
+            // ГђГҐГ­Г¤ГҐГ°ГЁГ¬ Г±Г¶ГҐГ­Гі Г­Г  ГЄГ Г¦Г¤Г»Г© ГЄГ Г¤Г°
             function render() {
                 renderer.render(scene, camera);
             }
 
-            // Запускаем цикл анимации
+            // Г‡Г ГЇГіГ±ГЄГ ГҐГ¬ Г¶ГЁГЄГ« Г Г­ГЁГ¬Г Г¶ГЁГЁ
             function animate(time) {
-                // Запускаем цикл в петлю
+                // Г‡Г ГЇГіГ±ГЄГ ГҐГ¬ Г¶ГЁГЄГ« Гў ГЇГҐГІГ«Гѕ
                 requestAnimationFrame(animate);
                 deltaTime = clock.getDelta();
                 totalTime += deltaTime;
